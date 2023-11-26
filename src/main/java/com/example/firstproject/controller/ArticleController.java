@@ -19,6 +19,7 @@ import java.util.Optional;
 @Slf4j //로깅 기능을 위한 어노테이션 추가
 @Controller
 public class ArticleController {
+    //등록 페이지
     @GetMapping("/articles/new")
     public String newArticleForm(){
         return"articles/new";
@@ -27,6 +28,7 @@ public class ArticleController {
     @Autowired //스프링 부트가 미리 생성해 놓은 레파지토리 객체 주입(DI) 이것을 의존성 주입이라고한다. (Dipendency Injection)
     private ArticleRepository articleRepository; //articleRepository 객체 선언
 
+    // 등록 확인 페이지
     @PostMapping("/articles/create")
     public String createArticle(ArticleForm form) {  //폼 데이터를 dto로 받기
         log.info(form.toString());
@@ -52,8 +54,13 @@ public class ArticleController {
         log.info(saved.toString());
         //System.out.println(saved.toString()); //article이 db에 잘 저장되는지 확인 출력
 
-        return "";
+
+        return "redirect:/articles/"+saved.getId();
+        //id에 페이지를 열고 싶으면 (article/1 ...) saved객체에 article을 저장하였으므로,
+        // saved.getId()를 호출하면 saved 객체의 id값을 가져올수 있다.
+        // 위와 같이 return에 getId값을 가져오고싶으면 getter가 정의되어있어야한다.
     }
+        //상세페이지
         @GetMapping("/articles/{id}")
         public String show(@PathVariable Long id, Model model){
         // @PathVariable 는 URL 요청으로 들어온 전달값을 컨트롤러의 매개변수로 가져오는 어노테이션이다. //여기서는 id를 매개변수로 가져옴.
@@ -73,6 +80,7 @@ public class ArticleController {
             // 3. 뷰 페이지 반환하기
             return"articles/show";
         }
+        //목록페이지
         @GetMapping("/articles")
         public String index(Model model){
 

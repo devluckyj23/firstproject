@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 @Controller
 public class MemberController { //스프링 부트가 미리 생성해 놓은 레파지토리 객체 주입(DI) 이것을 의존성 주입이라고한다. (Dipendency Injection)
-
+    //등록페이지
     @GetMapping("/signup")
     public String newMember(){
         return"/members/join";
@@ -28,7 +28,7 @@ public class MemberController { //스프링 부트가 미리 생성해 놓은 �
 
     @Autowired
     private MemberRepository memberRepository;  //memmberRepository 객체 선언
-
+    
     @PostMapping("/join")
     public String joinMember(MemberForm form){ //폼 데이터를 dto로 받기
 
@@ -54,9 +54,9 @@ public class MemberController { //스프링 부트가 미리 생성해 놓은 �
         //System.out.println(saved.toString());
         log.info(saved.toString());
 
-        return"/members/join";
+        return"redirect:/members/" + saved.getId();
     }
-
+    //특정id조회
     @GetMapping("/members/{id}")
     public String show(@PathVariable Long id, Model model){
         log.info("id = " + id);
@@ -67,7 +67,8 @@ public class MemberController { //스프링 부트가 미리 생성해 놓은 �
         //3. 뷰 페이지 반환하기
         return"members/show";
     }
-
+    
+    //목록페이지
     @GetMapping("/members")
     public String index(Model model){
         ArrayList<Member> memberEntityList = memberRepository.findAll();
