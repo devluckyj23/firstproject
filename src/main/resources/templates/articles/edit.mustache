@@ -1,0 +1,21 @@
+{{>layouts/header}}
+{{#article}}
+<form class="container" action="/articles/update" method="post">
+<!-- 원래 수정의 경우 method ="patch" 를 사용해야하지만 form태그가 오래된 규격이기에 post를 쓴다. -->
+    <input type="hidden" name="id" value="{{id}}">
+    <div class="mb-3">
+        <!--제목-->
+        <label class="from-label">제목</label>
+        <input type="text" class="form-control" name="title" value="{{title}}"> <!--dto의 title 필드와 연결-->
+    </div>
+    <!--내용-->
+    <div class="mb-3">
+        <label class="from-label">내용</label>
+        <textarea class="form-control" rows="3" name="content">{{content}}</textarea> <!--dto의 content 필드와 연결-->
+    </div>
+    <!--버튼-->
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/articles/{{id}}">Back</a>
+</form>
+{{/article}}
+{{>layouts/footer}}

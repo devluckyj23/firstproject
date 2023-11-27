@@ -9,15 +9,12 @@ import lombok.ToString;
 @ToString // (ToString 코드 간소화)
 public class ArticleForm {
     // 입력 폼에서 제목과 내용 2가지를 전송할 예정이니 dto에서도 필드 2개가 필요하다
-    
+    private Long id;
     private String title; //제목을 받을 필드
     private String content; // 내용을 받을 필드
 
-
-
-
     //
     public Article toEntity() {
-       return new Article(null,title,content);
+       return new Article(id,title,content);
     }
 }

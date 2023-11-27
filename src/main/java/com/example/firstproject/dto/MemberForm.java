@@ -8,6 +8,7 @@ import lombok.ToString;
 @ToString
 public class MemberForm {
     // 입력 폼에서 제목과 내용 2가지를 전송할 예정이니 dto에서도 필드 2개가 필요하다
+    private Long id;
     private String email;
     private String password;
 //    //전송 받은 제목과 내용을 필드에 저장하는 생성자 추가
@@ -28,6 +29,6 @@ public class MemberForm {
 
     //toEntity 메서드
     public Member toEntity() {
-        return new Member(null,email,password);
+        return new Member(id,email,password);
     }
 }

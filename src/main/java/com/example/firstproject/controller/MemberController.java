@@ -76,4 +76,27 @@ public class MemberController { //스프링 부트가 미리 생성해 놓은 �
 
         return"members/index";
     }
+
+    @GetMapping("/members/{id}/edit")
+    public String memEdit(@PathVariable Long id,Model model){
+        Member memberEntity= memberRepository.findById(id).orElse(null);
+        model.addAttribute("member",memberEntity);
+        return"members/memEdit";
+    }
+    @PostMapping("/members/update")
+    public String memUpdate(MemberForm form){
+        log.info(form.toString());
+
+        // dto 변환
+        Member memberEntity = form.toEntity();
+        // db 저장
+        // 1. 기존 데이터 가져오기
+
+        // 2. if 조건문
+            if(memberEntity.getId() != null){
+                Member saved = memberRepository.save(memberEntity);
+            }
+        //
+        return"redirect:/members/" + memberEntity.getId();
+    }
 }

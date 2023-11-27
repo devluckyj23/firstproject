@@ -33,8 +33,6 @@ public class ArticleController {
     public String createArticle(ArticleForm form) {  //폼 데이터를 dto로 받기
         log.info(form.toString());
         //System.out.println(form.toString());        // dto에 폼 데이터가 잘 담겼는지 확인
-
-
         //1.dto를 엔티티로 변환
         // -> form객체의 toEntity()메서드를 호출해서 그 반환 값을 Article 타입의 article 엔티티에 저장한다.
         // -> 이를 위해서는 엔티티 클래스 부터 만들어야한다. Article 클래스가 바로 엔티티 클래스
@@ -94,6 +92,33 @@ public class ArticleController {
         //3. 사용자에게 보여 줄 뷰 페이지 설정하기
 
         return"articles/index";
+        }
+
+        @GetMapping("/articles/{id}/edit")
+        public String edit(@PathVariable Long id, Model model){
+            // 수정할 기존 데이터 가져오기
+          Article articleEntity  = articleRepository.findById(id).orElse(null);
+          model.addAttribute("article",articleEntity);
+            //뷰페이지 설정하기
+          return"articles/edit";
+        }
+
+        @PostMapping("/articles/update")
+        public String update(ArticleForm form){ //매개변수로 DTO 받아오기
+        // - 이 때, mustache에서 input 태그로 id값도 받아오기때문에 dto에 추가해야한다. ArticleForm
+        log.info(form.toString());
+        //dto -> 엔티티
+            Article articleEntity = form.toEntity();
+            log.info(articleEntity.toString());
+        // 엔티티 db저장
+            //1.db에서 기존 데이터 가져오기
+         Article target  = articleRepository.findById(articleEntity.getId()).orElse(null);
+            //2.기존 데이터값 갱신
+           if(target != null){
+               articleRepository.save(articleEntity);
+           }
+        // 수정 결과 페이지로 리다이렉트
+        return"redirect:/articles/"+articleEntity.getId();
         }
 }
 
