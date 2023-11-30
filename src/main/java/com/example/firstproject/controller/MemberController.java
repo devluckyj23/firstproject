@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -99,4 +100,20 @@ public class MemberController { //스프링 부트가 미리 생성해 놓은 �
         //
         return"redirect:/members/" + memberEntity.getId();
     }
+
+    @GetMapping("members/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes rttr){
+        log.info("삭제를 요청했음.");
+        //1.삭제할 데이터 찾기
+       Member member= memberRepository.findById(id).orElse(null);
+        //2.데이터 삭제하기
+        if(member != null){
+            memberRepository.delete(member); // delete 대상은 member id뿐만아니라 다른 데이터도 같이 삭제니까!
+            rttr.addFlashAttribute("msg","삭제가 완료되었습니다!");
+
+        }
+        //3.리다이렉트시키기
+        return "redirect:/members";
+    }
+
 }
