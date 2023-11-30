@@ -1,9 +1,6 @@
 package com.example.firstproject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -14,7 +11,9 @@ import lombok.ToString;
 @Getter
 public class Article {
     @Id // 엔티티의 대푯값 지정
-    @GeneratedValue //대푯값 자동 생성 기능 추가(숫자가 자동으로 매겨짐// 고유 번호이기에 같은 제목과 내용이 있어도 구분가능하게 해준다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    //대푯값 자동 생성 기능 추가(숫자가 자동으로 매겨짐// 고유 번호이기에 같은 제목과 내용이 있어도 구분가능하게 해준다.
+    //(strategy = GenerationType.IDENTITY) 추가 : DB가 id 자동 생성
     private Long id; // 대푯값
     @Column // title 필드 선언, DB 데이블의 title 열과 연결된다.
     private String title;

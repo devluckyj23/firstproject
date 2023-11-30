@@ -128,11 +128,12 @@ public class ArticleController {
 
         //1. 삭제할 대상 가져오기
           Article target = articleRepository.findById(id).orElse(null);
-          log.info(toString());
+          log.info(target.toString());
         //2. 대상 엔티티 삭제하기
             if( target != null){
                 articleRepository.delete(target);
                 rttr.addFlashAttribute("msg","삭제됐습니다!!");
+
             }
         //3. 결과 페이지로 리다이렉트하기
 

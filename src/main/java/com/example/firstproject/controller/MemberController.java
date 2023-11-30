@@ -110,7 +110,6 @@ public class MemberController { //스프링 부트가 미리 생성해 놓은 �
         if(member != null){
             memberRepository.delete(member); // delete 대상은 member id뿐만아니라 다른 데이터도 같이 삭제니까!
             rttr.addFlashAttribute("msg","삭제가 완료되었습니다!");
-
         }
         //3.리다이렉트시키기
         return "redirect:/members";
