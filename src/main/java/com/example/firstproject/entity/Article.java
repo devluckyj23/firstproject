@@ -33,6 +33,15 @@ public class Article {
 
     public Article() {}
 
+    public void patch(Article article) {
+        if( article.title != null)
+            this.title = article.title;
+
+        if( article.content != null)
+            this.content = article.content;
+
+    }
+
 //   getter 사용 방법 1
 //    public Long getId() { // !주의:  타입을Long으로 바꿔줘야함.
 //        return id;
