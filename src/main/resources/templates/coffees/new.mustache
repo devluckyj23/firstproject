@@ -1,0 +1,23 @@
+{{>layouts/header}}
+
+<!--부트스트랩 CSS적용-->
+
+<form class="container" action="/coffees/create" method="post">
+    <div class="mb-3">
+        <!--제목-->
+        <label class="from-label">메뉴</label>
+        <input type="text" class="form-control" name="name"> <!--dto의 name 필드와 연결-->
+    </div>
+    <!--내용-->
+    <div class="mb-3">
+        <!--제목-->
+        <label class="from-label">가격</label>
+        <input type="text" class="form-control" name="price"> <!--dto의 price 필드와 연결-->
+    </div>
+    <!--버튼-->
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/coffees">Back</a>
+</form>
+
+{{>layouts/footer}}
+
