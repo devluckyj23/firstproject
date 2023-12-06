@@ -1,0 +1,23 @@
+{{>layouts/header}}
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">name</th>
+        <th scope="col">price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--coffee라는 이름으로 coffeeEntity변수를 model에 저장했었다.-->
+    {{#coffeeList}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/coffees/{{id}}">{{name}}</a></td>
+            <td>{{price}}</td>
+        </tr>
+    {{/coffeeList}}
+    </tbody>
+</table>
+<a href="/coffees/new">새로등록하기</a>
+{{>layouts/footer}}
+

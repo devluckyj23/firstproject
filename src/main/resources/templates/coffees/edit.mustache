@@ -1,0 +1,21 @@
+{{>layouts/header}}
+{{#coffee}}
+<form class="container" action="/coffees/update" method="post">
+    <input type="hidden" name="id" value="{{id}}">
+    <div class="mb-3">
+        <!--제목-->
+        <label class="from-label">메뉴</label>
+        <input type="text" class="form-control" name="name" value="{{name}}"> <!--dto의 name 필드와 연결-->
+    </div>
+    <!--내용-->
+    <div class="mb-3">
+        <!--제목-->
+        <label class="from-label">가격</label>
+        <input type="text" class="form-control" name="price" value="{{price}}"> <!--dto의 price 필드와 연결-->
+    </div>
+    <!--버튼-->
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="/coffees/{{id}}">상세페이지</a>
+</form>
+{{/coffee}}
+{{>layouts/footer}}

@@ -1,0 +1,28 @@
+{{>layouts/header}}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">name</th>
+        <th scope="col">price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--coffee라는 이름으로 coffeeEntity변수를 model에 저장했었다.-->
+    {{#coffee}}
+    <tr>
+        <th>{{id}}</th>
+        <td>{{name}}</td>
+        <td>{{price}}</td>
+    </tr>
+    {{/coffee}}
+    </tbody>
+</table>
+<a href="/coffees/{{coffee.id}}/edit" class="btn btn-primary">수정</a>
+<a href="/coffees/{{coffee.id}}/delete" class="btn btn-danger">삭제</a>
+
+<a href="/coffees">목록</a>
+
+{{>layouts/footer}}
+

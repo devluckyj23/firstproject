@@ -7,11 +7,12 @@ import lombok.ToString;
 @AllArgsConstructor // 기본 생성자 자동 생성
 @ToString
 public class CoffeeDto {
+    private Long id;
     private String name; // 커피 이름 받을 필드
     private String price; // 커피 가격 받을 필드
 
     public Coffee toEntity() {
-        return new Coffee(null,name,price);
+        return new Coffee(id,name,price);
     }
 }
 
