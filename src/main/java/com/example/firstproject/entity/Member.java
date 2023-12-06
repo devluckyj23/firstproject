@@ -1,9 +1,6 @@
 package com.example.firstproject.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class Member {
     @Id // 행번호 // 엔티티의 대푯값 지정
-    @GeneratedValue // 행번호 자동 //대푯값 자동 생성 기능 추가(숫자가 자동으로 매겨짐
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // 행번호 자동 //대푯값 자동 생성 기능 추가(숫자가 자동으로 매겨짐
     // 고유 번호이기에 같은 제목과 내용이 있어도 구분가능하게 해준다.
 
     private Long id; // 대푯값
