@@ -75,6 +75,6 @@ public class CoffeeApiController {
     //3. 대상 삭제하기
         coffeeRepository.delete(coffee);
         // 4. 정상 리턴
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
