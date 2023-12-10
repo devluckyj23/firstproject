@@ -17,16 +17,20 @@ public class ArticleApiController {
 
     @Autowired // 게시글 레파지터리 주입
     private ArticleRepository articleRepository;
+
+    // 전체 데이터 조회 (전체)
     //GET
     @GetMapping("/api/articles") // URL 요청 접수
     public List<Article> index(){ //index메서드 정의
         return articleRepository.findAll();
     }
 
+    // 단일 데이터 조회 (상세)
     @GetMapping("/api/articles/{id}") // URL 요청 접수
     public Article show(@PathVariable Long id){ //index메서드 정의
         return articleRepository.findById(id).orElse(null);
     }
+
     //POST
     @PostMapping("/api/articles") // URL 요청 접수
     public Article create(@RequestBody ArticleForm dto) {// 반환형이 Article인 create() 메서드 정의하고, 수정할 데이터를 dto매개변수로 받아온다.
@@ -47,7 +51,7 @@ public class ArticleApiController {
         //2. 타깃 조회하기
         Article target = articleRepository.findById(id).orElse(null);
         //3. 잘못된 요청 처리하기
-        if(target ==null || id != article.getId()){ // 잘못된 요청인지 판별
+        if(target == null || id != article.getId()){ // 잘못된 요청인지 판별
             // 400, 잘못된 요청 응답!
             log.info("잘못된 요청! id: {}, article: {}",id,article.toString()); //로그찍기
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null); //HttpStatus : HTTP 상태코드 관리 클래스
@@ -60,8 +64,6 @@ public class ArticleApiController {
         return ResponseEntity.status(HttpStatus.OK).body(updated); // 정상응답
     }
     //ResponseEntity<T> 는 REST컨트롤러의 반환형, 즉, REST API의 응답을 위해 사용하는 클래스이다. 상태코드를 실어 보낼수있다.
-
-
 
     //DELETE
     @DeleteMapping("/api/articles/{id}")
