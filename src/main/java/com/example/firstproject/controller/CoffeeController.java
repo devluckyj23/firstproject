@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.util.List;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
@@ -214,10 +213,3 @@ public class CoffeeController {
 //삭제 완료 메시지 남기기 RedirectAttributes
 // 확인 메시지를 list에서 확인해야하나 header부분에 넣는게 좋을 듯 하므로 header부분에 div와 button 태그 추가
 // div == 메시지 창 , button 닫기 버튼
-
-
-
-
-
-
-
